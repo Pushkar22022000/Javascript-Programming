@@ -5,7 +5,7 @@ let Alive = false
 let message = ""
 
 let player = {
-    name : "PK",
+    name : "Pushkar",
     chips : 100
 }
 
