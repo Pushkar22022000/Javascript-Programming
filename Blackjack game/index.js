@@ -5,8 +5,8 @@ let Alive = false
 let message = ""
 
 let player = {
-    name : "per",
-    chips : 200
+    name : "PK",
+    chips : 100
 }
 
 document.getElementById("player-el").textContent = player.name + ": $" + player.chips
