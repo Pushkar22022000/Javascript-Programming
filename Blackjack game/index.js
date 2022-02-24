@@ -6,7 +6,7 @@ let hasBlackjack = false
 let cards=[]
 let sum = 0
 
-let Player = {name:"Pushkar", points:50}; //created Player object
+let Player = {name:"Pushkar", points:100$}; //created Player object
 let playerElement = document.getElementById("user")
 playerElement.textContent = Player.name + ":"+" $ "+Player.points
 
