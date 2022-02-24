@@ -1,15 +1,16 @@
-let countE=document.getElementByID("count")
-let count=0
+let count = 0
+
 function increment(){
     count += 1
-    countE1.textContent=count
+    //document.getElementById("count-el").innerText = count
+    document.getElementById("count-el").textContent = count
 }
 
-let savE1=document.getElementById("save-el")
-
-function save(){
-    let countentries= count + " - "
-    savE1.textContent += countentries
-    countE1.textContent=0
-    count=0
+function save(){ 
+    let saved_count = count + " - "
+    //document.getElementById("save-el").innerText += " " + saved_count
+    //innerText can be computationally expensive than textContent
+    document.getElementById("save-el").textContent += saved_count
+    document.getElementById("count-el").textContent = 0
+    count = 0
 }
