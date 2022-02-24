@@ -1,74 +1,68 @@
-let cards = []
+let messageElement = document.getElementById("msg")
+let sumElement =  document.querySelector("#sum-id")
+let cardElement =  document.getElementById("card-id")
+let isAlive = false
+let hasBlackjack = false
+let cards=[]
 let sum = 0
-let BlackJack = false
-let Alive = false
-let message = ""
 
-let player = {
-    name : "Pushkar",
-    chips : 100
+let Player = {name:"Pushkar", points:50}; //created Player object
+let playerElement = document.getElementById("user")
+playerElement.textContent = Player.name + ":"+" $ "+Player.points
+
+function startGame(){
+    let firstCard = generateRandomNum()
+    let secondCard = generateRandomNum()
+    cards = [firstCard,secondCard]
+    sum = firstCard + secondCard
+    isAlive=true
+    renderGame()
 }
-
-document.getElementById("player-el").textContent = player.name + ": $" + player.chips
-
-function getRandomCard(){
-    // we want a range of 1 -> 13
-    // math floor removes decimal
-    // math random ranges from 0.000 -> 0.999
-    // 0.999 * 13 will give numbers range in 0.000 -> 12.999
-    //after using floor 0.000 -> 12.999 becomes 0 -> 12
-    // now for getting range of 1 - 13 after using floor add 1 
-    let card = Math.floor(Math.random()*13) + 1
-    if (card === 1){
+function generateRandomNum(){
+    //if num=1 return 11
+    //if num=11 12 or 13 return 10
+    let randomNum = Math.floor(Math.random() * 13) + 1     //e.g floor(6.777)=6+1=7 floor(0.88)=0+1
+    if(randomNum===1){
         return 11
     }
-    else if (card > 10){
+    else if(randomNum > 10 ){
         return 10
     }
     else{
-        return card
+        return randomNum
     }
 }
-
-function startGame(){
-    Alive = true
-    let firstCard = getRandomCard()
-    let secondCard = getRandomCard()
-    cards = [firstCard, secondCard]
-    sum = firstCard + secondCard
-    renderGame()
-}
-
 function renderGame(){
-    //document.querySelector("#sum-el") # for id 
-    //document.querySelector(".sum-el") . for class 
-    //document.querySelector("body") we can pass html element too 
-    document.getElementById("sum-el").textContent = "Sum : " + sum
-    document.getElementById("cards-el").textContent = "Cards : " 
-    for (let i=0; i < cards.length; i++){
-        document.getElementById("cards-el").textContent += cards[i] + " "
+    sumElement.innerText = "Sum :" + " "+sum
+    cardElement.innerText = "Card : "
+    for(let i=0;i<cards.length;i++){
+    cardElement.textContent += cards[i]+" "
     }
-    if (sum <= 20) {
-        message = "Do you want to draw a new card?"
-    } else if (sum === 21) {
-        message = "You've got Blackjack!"
-        BlackJack = true
-    } else {
-        message = "You're out of the game!"
-        Alive = false
+    if(sum<=20){
+        newcard=true
+        message="Do you want to draw a new card?"
     }
-
-    document.getElementById("message-el").textContent = message
+    else if(sum === 21)
+    {
+        hasBlackjack=true
+        message="Wohooo! You have got a Black Jack!!"
+    }
+    else{
+        isAlive=false
+        message="You are out of the game!"
+    }
+    messageElement.innerText=message
+    //console.log("button clicked")
+    
 }
-
 function newCard(){
-    if (Alive === true && BlackJack === false){
-        let card = getRandomCard()
-        sum += card
-        cards.push(card)
-        renderGame()
+    //is alive and does not have a blackjack
+    if(isAlive === true && hasBlackjack === false){
+    let card = generateRandomNum()
+    cards.push(card)
+    sum+=card
+    renderGame()
     }
 }
-
 
 
