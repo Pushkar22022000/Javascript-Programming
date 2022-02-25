@@ -8,7 +8,7 @@ let sum = 0
 
 let Player = {name:"Pushkar", points:100}; //created Player object
 let playerElement = document.getElementById("user")
-playerElement.textContent = Player.name + ":"+" $ "+Player.points
+playerElement.textContent = Player.name + ":"+" $ "+Player.points     // stores player data for new rounds
 
 function startGame(){
     let firstCard = generateRandomNum()
@@ -33,10 +33,10 @@ function generateRandomNum(){
     }
 }
 function renderGame(){
-    sumElement.innerText = "Sum :" + " "+sum
+    sumElement.innerText = "Sum :" + " "+sum   // new sum entering
     cardElement.innerText = "Card : "
     for(let i=0;i<cards.length;i++){
-    cardElement.textContent += cards[i]+" "
+    cardElement.textContent += cards[i]+" "               // for loop that renders out all the cards instead of just two and shows card value
     }
     if(sum<=20){
         newcard=true
@@ -59,6 +59,7 @@ function newCard(){
     //is alive and does not have a blackjack
     if(isAlive === true && hasBlackjack === false){
     let card = generateRandomNum()
+    // Push the card to the cards array
     cards.push(card)
     sum+=card
     renderGame()
