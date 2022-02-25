@@ -1,5 +1,5 @@
-let Leads = []
-const inputEl = document.getElementById("input-el")
+let Leads = []          // url entries
+const inputEl = document.getElementById("input-el")       // this value cannot be reasigned
 
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
